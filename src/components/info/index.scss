@@ -1,0 +1,42 @@
+.info-nav{
+    height:31px;
+    border-bottom: 1px solid #ddd;
+    background-color: #e3e4e5;
+    .container{
+        line-height:30px;
+        padding-left:210px;
+        .location{
+            color:#999;
+            .fa{
+                padding-right:6px;
+                font-size:16px;
+                color:#f10215;
+            }
+        }       
+        ul{
+            float:right;
+            li{
+                position: relative;
+                display:table-cell;
+                color:#999;
+                a{
+                    padding:0 10px;
+                    color:#999;
+                    &:hover{
+                        color:#f10215;
+                    }
+                    .fa{
+                        padding-left:4px;
+                    }             
+                }
+                &:after{
+                    position: absolute;
+                    content:'';
+                    margin-top:10px;
+                    height:10px;
+                    border-right:1px solid #aaa;
+                }                
+            }
+        }
+    }
+}

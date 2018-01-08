@@ -1,0 +1,66 @@
+.search{
+    position: relative;
+    height:140px;
+    .logo{
+        position: absolute;
+        top:-31px;
+    }
+    .search-part{
+        padding-left:200px;
+        .form{
+            position: relative;;
+            padding-top:22px;
+            margin-left:110px;
+            .input{
+                padding:4px 60px 4px 4px;
+                width:400px;
+                height:36px;
+                border: 1px solid #f10215;
+            }
+            .fa-camera{
+                position: absolute;
+                left:370px;
+                top:32px;
+                font-size:18px;
+                color:#999;
+                cursor: pointer;
+            }
+            .search-button{
+                padding:0 16px;
+                height:36px;
+                line-height:36px;
+                background:#f10215;
+                .fa{
+                    vertical-align: middle;
+                    color:#fff;
+                    font-size:16px;
+                    cursor: pointer;
+                }
+            }
+            .shop-car{
+                display:inline-block;
+                vertical-align:middle;
+                margin-left:30px;
+                width:190px;
+                height:36px;
+                line-height:34px;
+                text-align: center;
+                color:#f10215;
+                background-color:#fff;
+                border: 1px solid #ddd;
+                .fa{
+                    margin-right:6px;
+                    margin-bottom:6px;
+                    vertical-align:middle;
+                }
+            }
+        }
+        .keyGoods{
+            margin-left:110px;
+            line-height:20px;
+            a{
+                padding:0 6px;
+            }
+        }
+    }
+}
