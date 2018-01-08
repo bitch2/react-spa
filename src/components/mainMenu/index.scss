@@ -1,0 +1,24 @@
+.mainNav{
+  padding:15px 0;
+  width:190px;
+  background-color:#fefefe;
+  li{
+    padding-left:20px;
+    height:28px;
+    line-height:28px;
+    font-size:14px;
+    &:hover{
+      background-color:#f10;
+      a{
+        color:#fff;
+      }
+    }
+    a{
+      color:#626262;
+      &:not(:last-child):after{
+        content:'/';
+        margin:0 3px;
+      }
+    }
+  }
+}
