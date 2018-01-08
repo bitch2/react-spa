@@ -6,12 +6,15 @@
         top:-31px;
     }
     .search-part{
+        position:relative;
         padding-left:200px;
+        height:140px;
         .form{
             position: relative;;
             padding-top:22px;
             margin-left:110px;
             .input{
+                float:left;
                 padding:4px 60px 4px 4px;
                 width:400px;
                 height:36px;
@@ -26,20 +29,20 @@
                 cursor: pointer;
             }
             .search-button{
+                float:left;
                 padding:0 16px;
                 height:36px;
                 line-height:36px;
                 background:#f10215;
                 .fa{
-                    vertical-align: middle;
                     color:#fff;
                     font-size:16px;
                     cursor: pointer;
                 }
             }
             .shop-car{
-                display:inline-block;
-                vertical-align:middle;
+                position:relative;
+                float:left;
                 margin-left:30px;
                 width:190px;
                 height:36px;
@@ -53,14 +56,64 @@
                     margin-bottom:6px;
                     vertical-align:middle;
                 }
+                .shop-num{
+                  position: absolute;
+                  top:2px;
+                  left:140px;
+                  padding:2px 4px;
+                  line-height:16px;
+                  color:#fff;
+                  background-color:#f10215;
+                  border-radius:50%;
+                }
             }
         }
         .keyGoods{
             margin-left:110px;
             line-height:20px;
-            a{
-                padding:0 6px;
+            li{
+              float:left;
+              a{
+                  color:#999;
+                  padding:0 6px;
+                  &.active{
+                    color:#f10215;
+                  }
+                  &:hover{
+                    color:#f10215;
+                  }
+              }
             }
+        }
+        .keyHot{
+          position: absolute;
+          bottom:0;
+          li{
+            float:left;
+            position:relative;
+            margin-left:20px;
+            padding-right:10px;
+            &.divided:after{
+              content:'';
+              position: absolute;
+              right:0px;
+              top:6px;
+              height:10px;
+              border-right:1px solid #aaa;
+              margin-bottom:-6px;
+            }
+            a{
+              font-size:16px;
+              font-weight:bold;
+              color:#555;
+              &.active{
+                color:#c81623;
+              }
+              &:hover{
+                color:#c81623;
+              }
+            }
+          }
         }
     }
 }
