@@ -4,6 +4,7 @@ import Banner from './components/banner/index'
 import InfoNav from './components/info/index'
 import Search from './components/search/search'
 import MainMenu from './components/mainMenu/index'
+import SlideShow from './components/slideShow/index'
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import  'font-awesome/css/font-awesome.css'
 import './assets/css/reset.css'
@@ -15,7 +16,10 @@ ReactDom.render(
     <InfoNav />
     <div className='container'>
       <Search />
-      <MainMenu/>
+      <div className='clearfix'>
+       <MainMenu/>
+       <SlideShow />
+      </div>
     </div>
   </div>
 ),
