@@ -93,11 +93,12 @@
             position:relative;
             margin-left:20px;
             padding-right:10px;
+            line-height:40px;
             &.divided:after{
               content:'';
               position: absolute;
               right:0px;
-              top:6px;
+              top:16px;
               height:10px;
               border-right:1px solid #aaa;
               margin-bottom:-6px;
