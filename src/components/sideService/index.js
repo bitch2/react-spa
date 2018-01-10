@@ -43,15 +43,15 @@ export default class sideService extends Component{
         this.focusOrder=this.focusOrder.bind(this)
         this.unfocusOrder=this.unfocusOrder.bind(this)
     }
-    changeTab(event){
+    changeTab(event,index){
         this.setState({
-            defaultIndex:parseInt(event.target.getAttribute('index'))
+            defaultIndex:index
         })
     }
-    focusOrder(event){
-        if(parseInt(event.target.getAttribute('data-index'))===0){
+    focusOrder(event,inx,index){
+        if(inx===0){
             this.setState({
-                orderIndex:parseInt(event.target.getAttribute('data-order'))
+                orderIndex:index
             })
         }
     }
@@ -77,7 +77,7 @@ export default class sideService extends Component{
                 </div>
                 <div className='bulletin'>
                     <div className='tab'>
-                        <a href='javascript:void(0)' index='0' className={this.state.defaultIndex===0?'active':''} onMouseEnter={this.changeTab}>促销</a><a href='javascript:void(0)' index='1' className={this.state.defaultIndex===1?'active':''} onMouseEnter={this.changeTab}>公告</a>
+                        <a href='javascript:void(0)' className={this.state.defaultIndex===0?'active':''} onMouseEnter={(event)=>{this.changeTab(event,0)}}>促销</a><a href='javascript:void(0)' className={this.state.defaultIndex===1?'active':''} onMouseEnter={(event)=>{this.changeTab(event,1)}}>公告</a>
                         <a href='#' className='link'>更多</a>
                         <i className='tab-line' style={{left:this.state.defaultIndex*34+'px'}}></i>
                     </div>
@@ -107,7 +107,7 @@ export default class sideService extends Component{
                                 {
                                     val.order.map((item,index)=>{
                                         return(
-                                            <li key={index}><a href={item.url} className={inx===0&&this.state.orderIndex===index?'focus':''} data-index={inx} data-order={index} onMouseEnter={this.focusOrder}><FA name={item.icon}/>{item.name}</a></li>
+                                            <li key={index}><a href={item.url} className={inx===0&&this.state.orderIndex===index?'focus':''} onMouseEnter={(event)=>{this.focusOrder(event,inx,index)}}><FA name={item.icon}/>{item.name}</a></li>
                                         )
                                     })
                                 }
