@@ -1,5 +1,6 @@
 import './index.scss'
 import React,{Component} from 'react'
+import FA from 'react-fontawesome'
 import img1 from '../../assets/img/slide1.jpg'
 import img2 from '../../assets/img/slide2.jpg'
 import img3 from '../../assets/img/slide3.jpg'
@@ -16,6 +17,8 @@ export default class slideShow extends Component{
         this.changeImg=this.changeImg.bind(this)
         this.stopPlay=this.stopPlay.bind(this)
         this.autoPlay=this.autoPlay.bind(this)
+        this.toPrev=this.toPrev.bind(this)
+        this.toNext=this.toNext.bind(this)
         this.state={
             defaultIndex:0,
             imgs:[
@@ -62,6 +65,28 @@ export default class slideShow extends Component{
             }          
         },2000) 
     }
+    toPrev(){
+        if(this.state.defaultIndex===0){
+            this.setState((prevState)=>({
+                defaultIndex:prevState.imgs.length-1
+            }))
+        }else{
+            this.setState((prevState)=>({
+                defaultIndex:prevState.defaultIndex-1
+            }))
+        }     
+    }
+    toNext(){
+        if(this.state.defaultIndex===this.state.imgs.length-1){
+            this.setState({
+                defaultIndex:0
+            })
+        }else{
+            this.setState((prevState)=>({
+                defaultIndex:prevState.defaultIndex+1
+            }))
+        }
+    }
     render(){
         return(
             <div className='slide-show clearfix' onMouseEnter={this.stopPlay} onMouseLeave={this.autoPlay}>
@@ -85,6 +110,8 @@ export default class slideShow extends Component{
                         })
                     }
                 </ul>
+                <i className='toPrev' onClick={this.toPrev}><FA name='angle-left' /></i>
+                <i className='toNext' onClick={this.toNext}><FA name='angle-right' /></i>
                 <div className='adv-img'>
                     {
                         this.state.advs.map((item,index)=>{

@@ -46,6 +46,29 @@
             }
         }
     } 
+    i{
+        position: absolute;
+        z-index:1;
+        top:170px;
+        transform: translateY(-50%);
+        width:30px;
+        height:70px;
+        text-align: center;
+        font-size:16px;
+        line-height:70px;
+        color:#fff;
+        background-color:rgba(0,0,0,.2);
+        cursor: pointer;
+        &:hover{
+            background-color:rgba(0,0,0,.6);
+        }
+        &.toPrev{
+            left:10px;
+        }
+        &.toNext{
+            right:10px;
+        }
+    }
     .adv-img{
         margin-top:10px;
         a{
