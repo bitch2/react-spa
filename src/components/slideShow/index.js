@@ -14,6 +14,8 @@ export default class slideShow extends Component{
     constructor(props){
         super(props)
         this.changeImg=this.changeImg.bind(this)
+        this.stopPlay=this.stopPlay.bind(this)
+        this.autoPlay=this.autoPlay.bind(this)
         this.state={
             defaultIndex:0,
             imgs:[
@@ -29,17 +31,40 @@ export default class slideShow extends Component{
             advs:[
                 {img:adv1,url:'#a1'},
                 {img:adv2,url:'#a2'}
-            ]
+            ],
+            showTiming:null
         }
     }
-    changeImg(event) {
+    componentDidMount(){
+        this.autoPlay() 
+    }
+    componentWillUnmount() {
+        clearInterval(this.state.showTiming)
+    }
+    changeImg(event,index) {
         this.setState({
-            defaultIndex:parseInt(event.target.getAttribute('data-index'))
+            defaultIndex:index
         })
-    }   
+    }
+    stopPlay(){
+        clearInterval(this.state.showTiming)
+    } 
+    autoPlay(){
+        this.state.showTiming=setInterval(()=>{
+            if(this.state.defaultIndex===this.state.imgs.length-1){
+                this.setState({
+                    defaultIndex:0
+                })
+            }else{
+                this.setState((prevState, props)=>({                   
+                    defaultIndex:++prevState.defaultIndex
+                }))
+            }          
+        },2000) 
+    }
     render(){
         return(
-            <div className='slide-show clearfix'>
+            <div className='slide-show clearfix' onMouseEnter={this.stopPlay} onMouseLeave={this.autoPlay}>
                 <ul className='slides'>
                     {
                         this.state.imgs.map((item,index)=>{
@@ -55,7 +80,7 @@ export default class slideShow extends Component{
                     {
                         this.state.imgs.map((item,index)=>{
                             return (
-                                <li key={index} data-index={index} className={this.state.defaultIndex===index?'active':''} onMouseEnter={this.changeImg}></li>
+                                <li key={index} className={this.state.defaultIndex===index?'active':''} onMouseEnter={(event)=>{this.changeImg(event,index)}}></li>
                             )
                         })
                     }
