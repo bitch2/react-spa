@@ -1,0 +1,171 @@
+.side-service{
+    float:right;
+    width:190px;
+    height:480px;
+    background-color:#fff;
+    .user{
+        padding:0 15px;
+        height: 116px;
+        border-bottom: 1px solid #e6e6e6;
+        .icon{
+            float:left;
+            margin-top:10px;          
+            img{
+                width:50px;
+                border-radius: 50%;
+            }
+        }
+        .info{
+            float:right;
+            margin-top:10px;
+            p{
+                line-height:24px;
+                a{
+                    color:#555;
+                    &:hover{
+                        color:#f10215;
+                    }
+                    &:first-child{
+                        margin-right:6px;
+                    }
+                }
+            }
+        }
+        .member{
+            display:flex;
+            padding-top:10px;
+            width:100%;
+            justify-content: center;
+            a{
+                width:80px;
+                line-height:20px;
+                text-align: center;
+                color:#f10215;
+                background-color:#fff;
+                border:2px solid #f10215;
+                &:hover{
+                    color:#fff;
+                    background-color:#f10215;
+                }
+                &:first-child{
+                    margin-right:6px;
+                }
+            }
+        }
+    }
+    .bulletin{
+        padding:0 15px;
+        .tab{
+            position: relative;
+            line-height:30px;
+            border-bottom: 1px solid #e6e6e6;
+            a{
+                padding-right:6px;
+                color:#555;
+                &:first-child:after{
+                    display: inline-block;
+                    margin-left:6px;
+                    content:'';
+                    height:10px;
+                    border-right:1px solid #e6e6e6;
+                }
+                &.link{
+                    float:right;
+                    &:hover{
+                        color:#f10215;
+                    }
+                }
+            }
+            .tab-line{
+                position: absolute;
+                transition:all .2s linear;
+                bottom:0;
+                width:30px;
+                height:2px;
+                background-color:#f10215;
+            }
+        }
+        .info{
+            ul{
+                display:none;
+                padding:16px 0;
+                li{
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height:20px;
+                    a{
+                        color:#555;
+                        &:hover{
+                            color:#f10215;
+                        }
+                    }
+                }
+                &.active{
+                    display:block;
+                }
+            }
+        }
+    }
+    .order{
+        position: relative;
+        margin-top:10px;
+        ul{
+            display:flex;
+            overflow:hidden;
+            &.focus{
+                .fa{
+                    display:none;
+                }
+                a{
+                    position: relative;
+                    &.focus:before{
+                        content:'';
+                        position: absolute;
+                        left:0;
+                        top:0;
+                        width:100%;
+                        border-top:2px solid #f10215;
+                    }
+                }              
+            }
+            li{
+                flex:1;
+                height:70px;
+                text-align:center;
+                border-top:1px solid #e6e6e6;
+                border-right:1px solid #e6e6e6;
+                &:last-child{
+                    border-right:none;
+                }
+                a{
+                    display:block;
+                    height:100%;
+                    line-height:30px;
+                    color:#666;
+                    .fa{
+                        padding-top:16px;
+                        width:100%;
+                        font-size:18px;
+                    }
+                    &:hover{        
+                        color:#f10215;                       
+                    }
+                }
+            }
+        }
+        .detail{
+            .item{
+                display:none;
+                position: absolute;
+                width:100%;
+                height:180px;
+                bottom:0;
+                background-color:#fff;
+                &.active{
+                    display:block;
+                }
+            }
+        }
+    }
+}
