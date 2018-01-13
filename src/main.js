@@ -6,6 +6,7 @@ import Search from './components/search/search'
 import MainMenu from './components/mainMenu/index'
 import SlideShow from './components/slideShow/index'
 import SideService from './components/sideService/index'
+import MidddleShow from './components/middleShow/index'
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import  'font-awesome/css/font-awesome.css'
 import './assets/css/reset.css'
@@ -22,6 +23,7 @@ ReactDom.render(
        <SlideShow />
        <SideService />
       </div>
+      <MidddleShow />
     </div>
   </div>
 ),
