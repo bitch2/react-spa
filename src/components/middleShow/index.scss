@@ -1,7 +1,21 @@
 .middle-show{
-  margin-top:20px;
+  margin-top:10px;
   .ms{
-    float:left;
-    height:270px;
+    padding-left:16px;
+    height:55px;
+    color:#fff;
+    .title{
+      font-size:20px;
+      line-height:55px;
+      .fa{
+        vertical-align: middle;
+      }
+    }
+    .link{
+      padding-left:10px;
+      a{
+        color:#fff;
+      }
+    }
   }
 }
