@@ -18,8 +18,12 @@ export default class middleShow extends Component{
     return (
       <div className='middle-show clearfix'>
           <div className='ms' style={msStyle}>
-            <view className='title'><FA name='clock-o' size='2x'/>京东秒杀</view>
-            <view className='link'><a href='#'>总有你想不到的低价<FA name='chevron-circle-right'/></a></view>
+            <div className='title'><FA name='clock-o' size='2x'/>京东秒杀</div>
+            <div className='link'><a href='#'>总有你想不到的低价<FA name = 'chevron-circle-right' /></a></div>
+          </div>
+          <div className='show'>
+              <div className=''>
+              </div>
           </div>
       </div>
     )

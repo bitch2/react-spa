@@ -5,17 +5,25 @@
     height:55px;
     color:#fff;
     .title{
+      float:left;
       font-size:20px;
       line-height:55px;
       .fa{
+        margin-right:10px;
         vertical-align: middle;
       }
     }
     .link{
-      padding-left:10px;
+      float:left;
+      margin-top:20px;
+      margin-left:20px;
+      line-height:30px;
       a{
         color:#fff;
       }
     }
+  }
+  .show{
+    height:100px;
   }
 }
