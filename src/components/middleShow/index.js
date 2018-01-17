@@ -10,6 +10,8 @@ import png5 from '../../assets/img/ms5.png'
 import png6 from '../../assets/img/ms6.png'
 import png7 from '../../assets/img/ms7.png'
 import png8 from '../../assets/img/ms8.png'
+import jpg9 from '../../assets/img/ms9.jpg'
+import jpg10 from '../../assets/img/ms10.jpg'
 const msStyle={
   width:'100%',
   height:'55px',
@@ -33,6 +35,9 @@ export default class middleShow extends Component{
                ]
     }
   }
+  toLeft(){
+
+  }
   render(){
     return (
       <div className='middle-show clearfix'>
@@ -41,28 +46,36 @@ export default class middleShow extends Component{
             <div className='link'><a href='#'>总有你想不到的低价<FA name = 'chevron-circle-right' /></a></div>
           </div>
           <div className='show'>
-              <ul className=''>
-                {
-                  this.state.showList.map((item,index)=>{
-                    return (
-                      <li key={index}>
-                        {
-                          item.goods.map((value,inx)=>{
-                            return (
-                              <a href={value.url} key={inx}>
-                                <img src={value.pic} />
-                                <p className='name'>{value.name}</p>
-                                <p className='price'><span className='new'>{value.newPrice}</span><span className='old'>{value.oldPrice}</span></p>
-                              </a>
-                            )
-                          })
-                        }
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-              <div className=''>
+              <div className='box'>
+                <ul className='list'>
+                  {
+                    this.state.showList.map((item,index)=>{
+                      return (
+                        <li key={index}>
+                          {
+                            item.goods.map((value,inx)=>{
+                              return (
+                                <a href={value.url} key={inx}>
+                                  <img src={value.pic} />
+                                  <p className='name'>{value.name}</p>
+                                  <p className='price'><span className='new'>¥{value.newPrice}</span><span className='old'>¥{value.oldPrice}</span></p>
+                                </a>
+                              )
+                            })
+                          }
+                        </li>
+                      )
+                    })
+                  }
+                </ul>
+                <div className='move left'><FA name='angle-left' /></div>
+                <div className='move right'><FA name='angle-right' /></div>
+              </div>
+              <div className='box2'>
+                  <div className='item'>
+                    <a href="#9"><img src={jpg9} /></a>
+                    <a href="#10"><img src={jpg10} /></a>
+                  </div>
               </div>
           </div>
       </div>
