@@ -43,7 +43,10 @@
         position:absolute;
         left:0;
         top:0;
-        width:1920px;
+        width:2880px;
+        &.animition{
+          transition:left .6s linear;
+        }
         li{
           float:left;
           a{

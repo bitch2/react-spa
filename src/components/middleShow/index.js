@@ -1,6 +1,7 @@
 import './index.scss'
 import React,{Component} from 'react'
 import FA from 'react-fontawesome'
+import 'whatwg-fetch'
 import msBg from '../../assets/img/seckill_hd.png'
 import png1 from '../../assets/img/ms1.png'
 import png2 from '../../assets/img/ms2.png'
@@ -21,6 +22,7 @@ export default class middleShow extends Component{
   constructor(props){
     super(props)
     this.state={
+      defaultIndex:0,
       showList:[
                 {
                   goods:[
@@ -36,7 +38,43 @@ export default class middleShow extends Component{
     }
   }
   toLeft(){
-
+    if(this.state.defaultIndex===0){
+      this.refs['list'].className='list'
+      this.refs['list'].style.left=-1920+'px'
+      setTimeout(()=>{
+        this.refs['list'].className='list animition'
+        this.setState({
+        defaultIndex:1
+      })},0)
+    }else{
+      this.setState((prevState,props)=>({
+        defaultIndex:prevState.defaultIndex-1
+      })) 
+    }
+  }
+  toRight(){
+    if(this.state.defaultIndex===this.state.showList.length){
+      this.refs['list'].className='list'
+      this.refs['list'].style.left=0
+      setTimeout(()=>{
+        this.refs['list'].className='list animition'
+        this.setState({
+        defaultIndex:1
+      })},0)
+    }else{
+      this.setState((prevState,props)=>({
+        defaultIndex:prevState.defaultIndex+1
+      }))
+    }
+  }
+  componentDidMount(){
+    fetch('https://news-at.zhihu.com/api/4/news/latest',{dataType:'jsonp',jsonp:'callback'})
+    .then((res)=>{
+      console.log(res)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   }
   render(){
     return (
@@ -47,7 +85,7 @@ export default class middleShow extends Component{
           </div>
           <div className='show'>
               <div className='box'>
-                <ul className='list'>
+                <ul className='list animition' style={{left:-this.state.defaultIndex*960}} ref='list'>
                   {
                     this.state.showList.map((item,index)=>{
                       return (
@@ -67,9 +105,22 @@ export default class middleShow extends Component{
                       )
                     })
                   }
+                  <li>
+                    {
+                      this.state.showList[0].goods.map((value,inx)=>{
+                        return (
+                          <a href={value.url} key={inx}>
+                            <img src={value.pic} />
+                            <p className='name'>{value.name}</p>
+                            <p className='price'><span className='new'>¥{value.newPrice}</span><span className='old'>¥{value.oldPrice}</span></p>
+                          </a>
+                        )
+                      })
+                    }
+                  </li>
                 </ul>
-                <div className='move left'><FA name='angle-left' /></div>
-                <div className='move right'><FA name='angle-right' /></div>
+                <div className='move left' onClick={this.toLeft.bind(this)}><FA name='angle-left' /></div>
+                <div className='move right' onClick={this.toRight.bind(this)}><FA name='angle-right' /></div>
               </div>
               <div className='box2'>
                   <div className='item'>
