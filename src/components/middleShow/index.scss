@@ -30,6 +30,19 @@
         color:#fff;
       }
     }
+    .time{
+      float:right;
+      line-height:55px;
+      font-size:16px;
+      font-weight:bold;
+      .hms{
+        display:inline-block;
+        margin:0 6px;
+        line-height:26px;
+        padding:6px;
+        background:#000;
+      }
+    }
   }
   .show{
     height:100px;

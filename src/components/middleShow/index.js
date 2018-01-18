@@ -34,7 +34,10 @@ export default class middleShow extends Component{
                     {name:'商品5',url:'#g5',pic:png5,oldPrice:500,newPrice:400},{name:'商品6',url:'#g6',pic:png6,oldPrice:520,newPrice:420},{name:'商品7',url:'#g7',pic:png7,oldPrice:530,newPrice:430},{name:'商品8',url:'#g8',pic:png8,oldPrice:540,newPrice:440}
                   ]
                 }
-               ]
+               ],
+        hour: 24 - new Date().getHours(),
+        minute: 60 - new Date().getMinutes(),
+        second:60 - new Date().getSeconds()
     }
   }
   toLeft(){
@@ -49,7 +52,7 @@ export default class middleShow extends Component{
     }else{
       this.setState((prevState,props)=>({
         defaultIndex:prevState.defaultIndex-1
-      })) 
+      }))
     }
   }
   toRight(){
@@ -68,13 +71,16 @@ export default class middleShow extends Component{
     }
   }
   componentDidMount(){
-    fetch('https://news-at.zhihu.com/api/4/news/latest',{dataType:'jsonp',jsonp:'callback'})
-    .then((res)=>{
-      console.log(res)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+    this.timing=setInterval(()=>{
+      this.setState({
+        hour: 24 - new Date().getHours(),
+        minute: 60 - new Date().getMinutes(),
+        second: 60 - new Date().getSeconds()
+      })
+    },1000)
+  }
+  componentWillUnmount(){
+    clearInterval(this.timing)
   }
   render(){
     return (
@@ -82,6 +88,7 @@ export default class middleShow extends Component{
           <div className='ms' style={msStyle}>
             <div className='title'><FA name='clock-o' size='2x'/>京东秒杀</div>
             <div className='link'><a href='#'>总有你想不到的低价<FA name = 'chevron-circle-right' /></a></div>
+            <div className='time'>距离结束还有<span className='hms'>{this.state.hour<10?'0'+this.state.hour:this.state.hour}</span>:<span className='hms'>{this.state.minute<10?'0'+this.state.minute:this.state.minute}</span>:<span className='hms'>{this.state.second<10?'0'+this.state.second:this.state.second}</span></div>
           </div>
           <div className='show'>
               <div className='box'>
