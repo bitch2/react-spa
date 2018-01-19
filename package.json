@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.conf.js",
+    "server": "puer -a mock/_mockserver.js",
     "dev": "node build/dev-server.js"
   },
   "author": "",
