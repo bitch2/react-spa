@@ -24,7 +24,7 @@ export default class mainMenu extends Component{
       ]
     }
   }
-  render(){
+render(){
     return (
       <div className='mainNav'>
         <ul>
