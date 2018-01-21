@@ -8,7 +8,7 @@
                 },
                 "data": {
                     "foo|2-6": [{
-                        "text": "固定值", 
+                        "text": "固定值",
                         "id": "@id",
                         "guid": "@guid",
                         "index": "@increment",
@@ -28,6 +28,39 @@
                     }]
                 }
             }
+        },
+        "GET /api/goods/mock": {
+          "response": {
+            "status": 0,
+            "statusInfo": {
+              "message": "ok"
+            },
+            "data": {
+              "goodsList":{
+                "goods|1-4": [
+                  {
+                    "value": "固定值",
+                    "id": "@id",
+                    "guid": "@guid",
+                    "index": "@increment",
+                    "name": "@cname",
+                    "address": "@province@city@county",
+                    "email": "@email",
+                    "desc": "@cparagraph",
+                    "avatar": "@image('200x100', '#50B347', '#FFF', 'Mock.js')",
+                    "age": "@integer(10, 50)",
+                    "money": "@float(0, 100, 2, 2)",
+                    "isVip": "@boolean",
+                    "now": "@now('yyyy-MM-dd HH:mm:ss')",
+                    "datetime": "@datetime('yyyy-MM-dd HH:mm:ss')",
+                    "url": "@url('http')",
+                    "gender": "@pick(['male', 'female'])",
+                    "timestamp": "@integer(1471491895528, 1481491895528)"
+                  }
+                ]
+              }
+            }
+          }
         }
     }
 }
