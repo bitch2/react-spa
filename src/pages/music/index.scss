@@ -14,24 +14,88 @@
         filter: blur(30px);
     }
     .music-title{
-        margin-top:60px;
-        padding:0 40px;
+        margin-top:50px;
+        padding:10px 20px;
+        overflow:hidden;
         li{
             float:left;
-            width:120px;
+            margin-right:20px;
             a{
                 padding:6px 20px;
                 line-height:26px;
                 font-size:14px;
                 color:#fff;
                 border:1px solid #eee;
+                border-radius:2px;
                 &:hover{
                     border:1px solid #fff;
-                    box-shadow: 0 0 4px #fff;
+                    box-shadow: 0 0 10px 1px #fff;
                 }
             }
         }
     }
     .music-home{
+      margin:0 20px;
+      border-top:1px solid #ddd;
+      .music-home-title{
+        padding-left:10px;
+        font-size:0;
+        line-height:40px;
+        color:rgba(255,255,255,.8);
+        border-bottom:1px solid rgba(255, 255, 255, .4);
+        .song{
+          display:inline-block;
+          width:50%;
+          font-size:14px;
+        }
+        .singer {
+          display: inline-block;
+          width:30%;
+          font-size:14px;
+
+        }
+        .time {
+          display: inline-block;
+          width:20%;
+          font-size:14px;
+        }
+      }
+      .music-home-list {
+        font-size: 0;
+        li{
+          position:relative;
+          padding-left:10px;
+          line-height:40px;
+          color: rgba(255, 255, 255, .8);
+          border-bottom:1px solid rgba(255,255,255,.4);
+          &:hover{
+            color:#fff;
+          }
+          .song {
+            display: inline-block;
+            width: 50%;
+            font-size: 14px;
+          }
+          .singer {
+            display: inline-block;
+            width: 30%;
+            font-size: 14px;
+          }
+          .time {
+            display: inline-block;
+            width: 20%;
+            font-size: 14px;
+          }
+          .fa{
+            position: absolute;
+            left:40%;
+            top:6px;
+            padding:8px;
+            font-size:20px;
+            cursor:pointer;
+          }
+        }
+      }
+
     }
 }
