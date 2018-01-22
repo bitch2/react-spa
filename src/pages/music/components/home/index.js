@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
+import FA from 'react-fontawesome'
 export default class musicHome extends Component{
     constructor(props){
         super(props)
-        state:{
+        this.state={
             musicList:[
                 {
                     "id":718477,
@@ -38,11 +39,38 @@ export default class musicHome extends Component{
                 }
             ]
         }
+      this.playMusic=this.playMusic.bind(this)
+    }
+    componentWillMount(){
+      this.setState({
+        audio:this.refs.audio
+      })
+    }
+    playMusic(e,item){
+      this.auido.play()
     }
     render(){
         return(
             <div className='music-home'>
-                <ul className='list'>
+                <audio src='{this.state.musicList[0].url}' ref='audio' />
+                <div className='music-home-title'>
+                  <span className='song'>歌曲</span>
+                  <span className='singer'>歌手</span>
+                  <span className='time'>时长</span>
+                </div>
+                <ul className='music-home-list'>
+                    {
+                      this.state.musicList.map((item,index)=>{
+                        return(
+                          <li key={index}>
+                            <span className='song'>{item.name}</span>
+                            <span className='singer'>{item.singer}</span>
+                            <span className='time'></span>
+                            <FA name='play-circle-o' onClick={(e)=>{this.playMusic(e,item)}} />
+                          </li>
+                        )
+                      })
+                    }
                 </ul>
             </div>
         )
