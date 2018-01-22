@@ -1,0 +1,37 @@
+.music{
+    position: absolute;
+    z-index:-1;
+    top:0;
+    bottom:0;
+    width:100%;
+    .music-mask{
+        position: absolute;
+        z-index:-1;
+        top:0;
+        bottom:0;
+        width:100%;
+        background-size:cover;
+        filter: blur(30px);
+    }
+    .music-title{
+        margin-top:60px;
+        padding:0 40px;
+        li{
+            float:left;
+            width:120px;
+            a{
+                padding:6px 20px;
+                line-height:26px;
+                font-size:14px;
+                color:#fff;
+                border:1px solid #eee;
+                &:hover{
+                    border:1px solid #fff;
+                    box-shadow: 0 0 4px #fff;
+                }
+            }
+        }
+    }
+    .music-home{
+    }
+}
