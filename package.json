@@ -16,10 +16,12 @@
     "babel-polyfill": "^6.26.0",
     "font-awesome": "^4.7.0",
     "react": "^16.2.0",
+    "react-dedux": "^0.4.0-beta.4",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.2.1",
+    "redux": "^3.7.2",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
