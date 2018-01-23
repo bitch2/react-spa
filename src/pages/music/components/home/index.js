@@ -41,18 +41,18 @@ export default class musicHome extends Component{
         }
       this.playMusic=this.playMusic.bind(this)
     }
-    componentWillMount(){
+    componentDidMount(){
       this.setState({
         audio:this.refs.audio
       })
+      console.log(this)
     }
     playMusic(e,item){
-      this.auido.play()
+      this.state.audio.play()
     }
     render(){
         return(
             <div className='music-home'>
-                <audio src='{this.state.musicList[0].url}' ref='audio' />
                 <div className='music-home-title'>
                   <span className='song'>歌曲</span>
                   <span className='singer'>歌手</span>

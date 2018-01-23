@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {HashRouter as Router,Route,Link} from 'react-router-dom'
-import MusicHome from './components/home/index'
-import MusicList from './components/list/index'
-import MusicSearch from './components/search/index'
+import MusicHome from './components/home'
+import MusicList from './components/list'
+import MusicSearch from './components/search'
 import './index.scss'
 import imgBg from '../../assets/img/home.png'
 export default class Music extends Component {
@@ -45,17 +45,21 @@ export default class Music extends Component {
           ]
       }
   }
+  componentDidMount(){
+
+  }
   render() {
     return (
       <Router>
         <div className='music'>
+          <audio src={this.state.musicList[0].url} ref='audio' />
           <div className='music-mask' style={this.state.musicList.length>0?{backgroundImage:`url(${this.state.musicList[0].img})`}:{backgroundImage:`url(${imgBg})`}}></div>
           <ul className='music-title'>
             <li><Link to="/music/">歌曲列表</Link></li>
             <li><Link to="/music/list">热门歌曲</Link></li>
             <li><Link to="/music/search">搜索</Link></li>
           </ul> 
-          <Route exact path="/music/" component={MusicHome}/>
+          <Route exact path="/music/" component={MusicHome} audio={this.refs.aduio}/>
           <Route path="/music/list" component={MusicList}/>
           <Route path="/music/search" component={MusicSearch}/>
         </div>

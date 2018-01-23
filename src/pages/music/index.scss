@@ -4,6 +4,7 @@
     top:0;
     bottom:0;
     width:100%;
+    background-color:rgba(0,0,0,.4);
     .music-mask{
         position: absolute;
         z-index:-1;
@@ -11,7 +12,7 @@
         bottom:0;
         width:100%;
         background-size:cover;
-        filter: blur(30px);
+        filter: blur(20px);
     }
     .music-title{
         margin-top:50px;
