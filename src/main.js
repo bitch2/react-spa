@@ -15,6 +15,8 @@ import Music from './pages/music'
 import Movie from './pages/movie'
 import Handle from './pages/handle'
 import Others from './pages/others'
+import { Provider } from 'react-redux'
+import store from './store'
 const Home = () => {
   return(
     <div className='home'>
@@ -60,22 +62,24 @@ class Routers extends Component{
   }
 render(){
     return (
-      <Router>
-        <div className='out-container'>
-          <ul className='out-routers clearfix'>
-            <li className={this.state.defaultActive === 1 ?'router-active':''} onClick={(event)=>{this.changeRouter(event,1)}}><Link to="/">首页</Link></li>
-            <li className={this.state.defaultActive === 2 ? 'router-active' : ''} onClick={(event) => { this.changeRouter(event, 2) }}><Link to="/music">音乐</Link></li>
-            <li className={this.state.defaultActive === 3 ? 'router-active' : ''} onClick={(event) => { this.changeRouter(event, 3) }}><Link to="/movie">电影</Link></li>
-            <li className={this.state.defaultActive === 4 ? 'router-active' : ''} onClick={(event) => { this.changeRouter(event, 4) }}><Link to="/handle">操作</Link></li>
-            <li className={this.state.defaultActive === 5 ? 'router-active' : ''} onClick={(event) => { this.changeRouter(event, 5) }}><Link to="/others">其他</Link></li>
-          </ul>
-          <Route exact path="/" component={Home} />
-          <Route path="/music" component={Music} />
-          <Route path="/movie" component={Movie} />
-          <Route path="/handle" component={Handle} />
-          <Route path="/others" component={Others} />
-        </div>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <div className='out-container'>
+            <ul className='out-routers clearfix'>
+              <li className={this.state.defaultActive === 1 ?'router-active':''} onClick={(event)=>{this.changeRouter(event,1)}}><Link to="/">首页</Link></li>
+              <li className={this.state.defaultActive === 2 ? 'router-active' : ''} onClick={(event) => { this.changeRouter(event, 2) }}><Link to="/music">音乐</Link></li>
+              <li className={this.state.defaultActive === 3 ? 'router-active' : ''} onClick={(event) => { this.changeRouter(event, 3) }}><Link to="/movie">电影</Link></li>
+              <li className={this.state.defaultActive === 4 ? 'router-active' : ''} onClick={(event) => { this.changeRouter(event, 4) }}><Link to="/handle">操作</Link></li>
+              <li className={this.state.defaultActive === 5 ? 'router-active' : ''} onClick={(event) => { this.changeRouter(event, 5) }}><Link to="/others">其他</Link></li>
+            </ul>
+            <Route exact path="/" component={Home} />
+            <Route path="/music" component={Music} />
+            <Route path="/movie" component={Movie} />
+            <Route path="/handle" component={Handle} />
+            <Route path="/others" component={Others} />
+          </div>
+        </Router>
+      </Provider>
     )
   }
 }
