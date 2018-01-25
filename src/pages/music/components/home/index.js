@@ -3,22 +3,22 @@ import FA from 'react-fontawesome'
 import store from '../../../../store'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { currentMusic } from '../../../../store/action'
+import { currentMusic, musicList, audioElement } from '../../../../store/action'
 class musicHome extends Component{
     constructor(props){
-        super(props)
-        this.state={
-            musicList:[]
-        }
-      this.playMusic=this.playMusic.bind(this)
+      super(props)
+      this.state={
+          musicList:[]
+      }
+      this.changeMusic=this.changeMusic.bind(this)
     }
-    componentDidMount(){    
-        this.setState({
-            musicList:store.getState().musicList
-        })
+    componentWillMount(){
+      this.setState({
+        musicList:this.props.musicList
+      })
     }
-    playMusic(e,item){
-      store.dispatch(currentMusic(item))
+    changeMusic(e,item){
+      this.props.setCurrentMusic(item)
     }
     render(){
         return(
@@ -36,7 +36,7 @@ class musicHome extends Component{
                             <span className='song'>{item.name}</span>
                             <span className='singer'>{item.singer}</span>
                             <span className='time'></span>
-                            <FA name='play-circle-o' onClick={this.props.setCurrentMusic(item)} />
+                            <FA name='play-circle-o' onClick={(e) => {this.changeMusic(e,item)}} />
                           </li>
                         )
                       })
@@ -48,12 +48,14 @@ class musicHome extends Component{
 }
 function mapStateToProps(state) {
     return {
-      currentMusic: state.currentMusic
+      currentMusic: state.currentMusic,
+      musicList: state.musicList,
+      audioElement: state.audioElement
     }
 }
 function mapDispatchToProps(dispatch) {
     return {
-        setCurrentMusic: (item)=>{dispatch(currentMusic(item))}
+        setCurrentMusic : (item) => dispatch(currentMusic(item))
     }
 }
 export default connect(

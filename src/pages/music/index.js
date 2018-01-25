@@ -11,10 +11,6 @@ import {connect} from 'react-redux'
 class Music extends Component {
   constructor(props){
     super(props)
-    this.state={
-        currentMusic:{}
-      }
-    this.changeMusic=this.changeMusic.bind(this)
   }
   componentWillMount(){
     const list=[
@@ -23,7 +19,7 @@ class Music extends Component {
           "name":"夜曲",
           "singer":"周杰伦",
           "img":"https://y.gtimg.cn/music/photo_new/T002R150x150M0000024bjiL2aocxT.jpg?max_age=2592000",
-          "url":"http://ws.stream.qqmusic.qq.com/718477.m4a?fromtag=46",
+        "url":"http://www.daiwei.org/vue/music/%E6%9E%97%E4%BF%8A%E6%9D%B0,%E8%94%A1%E5%8D%93%E5%A6%8D%20-%20%E5%B0%8F%E9%85%92%E7%AA%9D.mp3",
           "lyric":""
       },
       {
@@ -51,36 +47,26 @@ class Music extends Component {
           "lyric":""
       }
     ]
-    this.setState({
-      musicList:list,
-      currentMusic:list[0]
-    })
-    store.dispatch(currentMusic(list[0]))
-    store.dispatch(musicList(list))
+    this.props.setCurrentMusic(list[0])
+    this.props.setMusicList(list)
   }
   componentDidMount(){
     this.setState({
       audio:this.refs.audio
     })
-    store.dispatch(audioElement(this.refs.audio))
-    // store.subscribe(this.changeMusic)
-  }
-  changeMusic(){
-    this.setState({
-      currentMusic:store.getState().currentMusic
-    })
+    this.props.setAudioElement(this.refs.audio)
   }
   render() {
     return (
       <Router>
         <div className='music'>
-          <audio src={this.state.currentMusic.url} ref='audio' />
-          <div className='music-mask' style={this.state.currentMusic.img?{backgroundImage:`url(${this.state.currentMusic.img})`}:{backgroundImage:`url(${imgBg})`}}></div>
+          <audio src={this.props.currentMusic.url} ref='audio' />
+          <div className='music-mask' style={this.props.currentMusic.img ? { backgroundImage: `url(${this.props.currentMusic.img})`}:{backgroundImage:`url(${imgBg})`}}></div>
           <ul className='music-title'>
             <li><Link to="/music/">歌曲列表</Link></li>
             <li><Link to="/music/list">热门歌曲</Link></li>
             <li><Link to="/music/search">搜索</Link></li>
-          </ul> 
+          </ul>
           <Route exact path="/music/" component={MusicHome}/>
           <Route path="/music/list" component={MusicList}/>
           <Route path="/music/search" component={MusicSearch}/>
@@ -94,6 +80,14 @@ const mapStateToProps = (state) => {
       currentMusic: state.currentMusic
     }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentMusic: item => dispatch(currentMusic(item)),
+    setMusicList: list => dispatch(musicList(list)),
+    setAudioElement: el => dispatch(audioElement(el))
+  }
+}
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Music)
