@@ -53,7 +53,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        setCurrentMusic: dispatch(currentMusic(item))
+        setCurrentMusic: (item)=>{dispatch(currentMusic(item))}
     }
 }
 export default connect(
