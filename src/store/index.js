@@ -1,10 +1,7 @@
 import { createStore,combineReducers,appMiddleware} from 'redux'
-count = (state=0,action) => {
-    switch (action.type){
-        case 'ADD':return state+1;
-        case 'REDUCER':return state-1;
-        default:return state
-    }
-}
-let store = createStore(count)
-let currentValue = store.getState()
+import reducers from './reducer'
+const store = createStore(
+    reducers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+export default store
