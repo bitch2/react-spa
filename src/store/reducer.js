@@ -1,6 +1,6 @@
-import {INCREMENT_COUNTER,DECREMENT_COUNTER,AUDIO_ELEMENT,CURRENT_MUSIC,MUSIC_LIST} from './action'
+import {INCREMENT_COUNTER,DECREMENT_COUNTER,AUDIO_ELEMENT,CURRENT_MUSIC,MUSIC_LIST,AUDIO_PLAY,AUDIO_PAUSE} from './action'
 import { combineReducers } from 'redux';
-const counter = (state = 0,action) => {
+const counter = (state = 0, action) => {
     switch (action.type){
         case INCREMENT_COUNTER:
             return state+1;
@@ -26,10 +26,20 @@ const currentMusic = (state = {}, action) => {
             return state
     }
 }
-const musicList = (state = [] ,action) => {
+const musicList = (state = [], action) => {
     switch(action.type){
         case MUSIC_LIST:
             return action.ary;
+        default:
+            return state
+    }
+}
+const audioStatus = (state = false, action) =>{
+    switch(action.type){
+        case AUDIO_PAUSE:
+            return false;
+        case AUDIO_PLAY:
+            return true;
         default:
             return state
     }
@@ -38,6 +48,7 @@ const reducers = combineReducers({
     counter,
     audioElement,
     currentMusic,
-    musicList
+    musicList,
+    audioStatus
 })
 export default reducers
