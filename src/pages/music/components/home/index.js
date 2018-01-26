@@ -1,21 +1,11 @@
 import React, {Component} from 'react'
 import FA from 'react-fontawesome'
-import store from '../../../../store'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { currentMusic, musicList, audioElement } from '../../../../store/action'
 class musicHome extends Component{
     constructor(props){
       super(props)
-      this.state={
-          musicList:[]
-      }
       this.changeMusic=this.changeMusic.bind(this)
-    }
-    componentWillMount(){
-      this.setState({
-        musicList:this.props.musicList
-      })
     }
     changeMusic(e,item){
       this.props.setCurrentMusic(item)
@@ -30,7 +20,7 @@ class musicHome extends Component{
                 </div>
                 <ul className='music-home-list'>
                     {
-                      this.state.musicList.map((item,index)=>{
+                      this.props.musicList.map((item,index)=>{
                         return(
                           <li key={index}>
                             <span className='song'>{item.name}</span>
@@ -55,7 +45,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        setCurrentMusic : (item) => dispatch(currentMusic(item))
+        setCurrentMusic : item => dispatch(currentMusic(item))
     }
 }
 export default connect(

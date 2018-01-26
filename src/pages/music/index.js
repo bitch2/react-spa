@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import {HashRouter as Router,Route,Link} from 'react-router-dom'
+import FA from 'react-fontawesome'
 import MusicHome from './components/home'
 import MusicList from './components/list'
 import MusicSearch from './components/search'
 import store from '../../store'
 import './index.scss'
 import imgBg from '../../assets/img/home.png'
-import { audioElement,currentMusic,musicList } from '../../store/action';
+import { audioElement,currentMusic,musicList,audioPlay,audioPause} from '../../store/action';
 import {connect} from 'react-redux'
 class Music extends Component {
   constructor(props){
     super(props)
+    this.changeAudioStatus=this.changeAudioStatus.bind(this)
   }
   componentWillMount(){
     const list=[
@@ -50,10 +52,16 @@ class Music extends Component {
     this.props.setCurrentMusic(list[0])
     this.props.setMusicList(list)
   }
+  changeAudioStatus(){
+    if(this.props.audioStatus){
+      this.props.audioElement.pause()
+      this.props.closeAudioStatus()
+    }else{
+      this.props.audioElement.play()
+      this.props.openAudioStatus()
+    }
+  }
   componentDidMount(){
-    this.setState({
-      audio:this.refs.audio
-    })
     this.props.setAudioElement(this.refs.audio)
   }
   render() {
@@ -70,6 +78,18 @@ class Music extends Component {
           <Route exact path="/music/" component={MusicHome}/>
           <Route path="/music/list" component={MusicList}/>
           <Route path="/music/search" component={MusicSearch}/>
+          <div className='show-info'>
+            <div className='music-img'>
+                <img src={this.props.currentMusic.img} />
+            </div>
+            <div className='music-lyric'>
+            </div>
+          </div>
+          <div className='control-bar'>
+            <FA name='step-backward' size='2x'/>
+            <FA name={this.props.audioStatus===true?'pause':'play'} size='3x' onClick={this.changeAudioStatus}/>
+            <FA name='step-forward' size='2x'/>         
+          </div>
         </div>
       </Router>
     )
@@ -77,14 +97,18 @@ class Music extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-      currentMusic: state.currentMusic
+      audioElement: state.audioElement,
+      currentMusic: state.currentMusic,
+      audioStatus: state.audioStatus
     }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     setCurrentMusic: item => dispatch(currentMusic(item)),
     setMusicList: list => dispatch(musicList(list)),
-    setAudioElement: el => dispatch(audioElement(el))
+    setAudioElement: el => dispatch(audioElement(el)),
+    openAudioStatus: () => dispatch(audioPlay()),
+    closeAudioStatus: () => dispatch(audioPause())
   }
 }
 export default connect(
