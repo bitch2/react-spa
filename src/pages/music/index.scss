@@ -112,17 +112,21 @@
           }
           .fa{
             transition:opacity .2s ease;
+            display:none;
             position: absolute;
             left:40%;
             top:6px;
             padding:8px;
             font-size:20px;
-            opacity:0;
+            opacity:.8;
             cursor:pointer;
           }
         &:hover{
             .fa{
-              opacity:.8;
+              display:block;
+              &:hover{
+                opacity: 1;
+              }
             }
           }
         }
