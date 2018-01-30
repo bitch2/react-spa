@@ -34,7 +34,10 @@ export default class Handle extends Component {
           headers: {
             'Content-Type': 'application/json'
           },
-          body:formData
+          body: JSON.stringify({
+            name: 'Hubot',
+            login: 'hubot',
+          })
         })
       .then((res)=>{
         console.log(res)
