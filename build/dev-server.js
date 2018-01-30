@@ -33,6 +33,7 @@ app.use(require('webpack-hot-middleware')(compiler,{
 // 使用代理
 var proxy = require('http-proxy-middleware');
 app.use('/api', proxy({target: 'http://localhost:8000', changeOrigin: true}));
+app.use('/upload', proxy({target: 'http://localhost:8080', changeOrigin: true}));
 // 监听3000端口，开启服务
 app.listen(port, 'localhost', function (err, result) {
   if (err) {
