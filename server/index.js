@@ -22,7 +22,7 @@ app.post('/upload/saveImg',(req,res,next)=>{
         fs.mkdirSync(__dirname+'/img')
     }
     // form.parse(req,(err,fields,files)=>{
-    //     console.log(files.the_file)       
+    //     console.log(files.the_file)
     // })
     http.get(req.body.img)
     .set({'async':false})
