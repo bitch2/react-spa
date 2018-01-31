@@ -15,7 +15,7 @@ app.get('/upload/getInfo',(req,res,next)=>{
 app.post('/upload/saveImg',(req,res,next)=>{
     // var form=new formidable.IncomingForm()
     // form.encoding='utf-8'
-    res.set({'Content-type':'application/json'})
+    // res.set({'Content-type':'application/json'})
     var data=req.body
     console.log(data)
     if(!fs.existsSync(__dirname+ '/img')){
