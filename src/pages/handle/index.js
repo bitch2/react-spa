@@ -29,15 +29,13 @@ export default class Handle extends Component {
       let formData=new FormData()
       formData.append('img','https://avatars1.githubusercontent.com/u/227713?v=3&s=120')
       formData.append('name','abc')
+      formData.append('file',this.state.img)
       fetch(this.state.url,{
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name: 'Hubot',
-            login: 'hubot',
-          })
+          // headers: {
+          //   'Content-Type': 'application/json'
+          // },
+          body: formData
         })
       .then((res)=>{
         console.log(res)
