@@ -67,7 +67,7 @@ export default class Handle extends Component {
     render() {
       return (
         <div className='handle'>
-          <div>
+          <div className='handle-item'>
             <h2>保存网图</h2>          
             <p>图片地址：{this.state.onlineImg}</p>
             <button onClick={this.confirmUpload}>确认上传</button>
@@ -75,7 +75,7 @@ export default class Handle extends Component {
               <img className='avatarImg' src={this.state.onlineAvatarImg===''?avatar:this.state.onlineAvatarImg} alt='预览' />
             </p>
           </div>
-          <div>
+          <div className='handle-item'>
             <h2>上传本地图片</h2>
             <input className='upload' type='file' ref='file' accept='image/jpeg,image/x-png,image/gif' onChange={(e)=>{this.localUpload(e.target.files[0])}}/>
             <p>
