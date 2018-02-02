@@ -11,13 +11,37 @@ export default class Handle extends Component {
         onlineAvatarImg:'',
         localAvatarImg:''
       }
+      this.handleWaiting=this.handleWaiting.bind(this)
+      this.handleLoading=this.handleLoading.bind(this)
+      this.msgRemind=this.msgRemind.bind(this)
       this.localUpload=this.localUpload.bind(this)
       this.confirmUpload=this.confirmUpload.bind(this)
+    }
+    msgRemind(){
+      custom.messages.normal()
+      custom.messages.error()
+      custom.messages.success()
+      custom.messages.warning()
+    }
+    handleWaiting(){
+      custom.waiting.show()
+      custom.messages.warning('三秒后关闭')
+      setTimeout(()=>{
+        custom.waiting.hide()
+      },3000)    
+    }
+    handleLoading(){
+      custom.loading.show()
+      custom.messages.warning('三秒后关闭')
+      setTimeout(()=>{
+        custom.loading.hide()
+      },3000)
     }
     confirmUpload(){
       let data=new URLSearchParams()
       data.append('img',this.state.onlineImg)
       data.append('name',new Date().getTime())
+      custom.loading.show()
       fetch('/upload/saveOnlineImg',{
         method: 'POST',
         body: data
@@ -26,11 +50,19 @@ export default class Handle extends Component {
         return res.json()
       })
       .then((json)=>{
-        this.setState({
-          onlineAvatarImg:json.url
-        })
+        custom.loading.hide()
+        if(json.upload){
+          this.setState({
+            onlineAvatarImg:json.url
+          })
+          custom.messages.success(json.msg)
+          return
+        }
+        custom.messages.error(json.msg)
       })
       .catch((err)=>{
+        custom.loading.hide()
+        custom.messages.error(json.msg)
         console.log(err)
       })
     }
@@ -56,7 +88,6 @@ export default class Handle extends Component {
           return
         }
         custom.messages.error(json.msg)
-        console.log(json)
       })
       .catch((err)=>{
         custom.loading.hide()
@@ -68,19 +99,31 @@ export default class Handle extends Component {
       return (
         <div className='handle'>
           <div className='handle-item'>
+            <h2>操作样式</h2>          
+            <button className='btn' onClick={this.msgRemind} style={{marginRight:'20px'}}>信息提示</button>
+            <button className='btn custom-btn-success'  style={{marginRight:'20px'}}>按钮</button>
+            <button className='btn custom-btn-error' style={{marginRight:'20px'}}>按钮</button>
+            <button className='btn custom-btn-warning'  style={{marginRight:'20px'}}>按钮</button>
+            <button className='btn' onClick={this.handleWaiting} style={{marginRight:'20px'}}>loading1</button>
+            <button className='btn' onClick={this.handleLoading}>loading2</button>
+          </div>
+          <div className='handle-item'>
             <h2>保存网图</h2>          
             <p>图片地址：{this.state.onlineImg}</p>
-            <button onClick={this.confirmUpload}>确认上传</button>
-            <p>
+            <button className='btn btn-primary' onClick={this.confirmUpload}>确认上传</button>
+            <div className='img-preview'>
               <img className='avatarImg' src={this.state.onlineAvatarImg===''?avatar:this.state.onlineAvatarImg} alt='预览' />
-            </p>
+            </div>
           </div>
           <div className='handle-item'>
             <h2>上传本地图片</h2>
-            <input className='upload' type='file' ref='file' accept='image/jpeg,image/x-png,image/gif' onChange={(e)=>{this.localUpload(e.target.files[0])}}/>
-            <p>
+            <div className='upload-box'>
+              <button className='btn btn-primary'>选择文件</button>
+              <input className='upload-btn' type='file' ref='file' accept='image/jpeg,image/x-png,image/gif' onChange={(e)=>{this.localUpload(e.target.files[0])}}/>
+            </div>
+            <div className='img-preview'>
               <img className='avatarImg' src={this.state.localAvatarImg===''?avatar:this.state.localAvatarImg} alt='预览' />
-            </p>
+            </div>
           </div>
         </div>
       )
