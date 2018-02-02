@@ -62,7 +62,7 @@ export default class Handle extends Component {
       })
       .catch((err)=>{
         custom.loading.hide()
-        custom.messages.error(json.msg)
+        custom.messages.error('服务出错!')
         console.log(err)
       })
     }
