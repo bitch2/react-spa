@@ -133,6 +133,18 @@
       }
 
     }
+    .music-search{
+      padding-left:20px;
+      .search-info{
+          margin-right:20px;
+          width: 200px;
+          padding: 6px;
+          font-size: 12px;
+          line-height: 20px;
+          color: #555;
+          vertical-align: middle;
+      }
+    }
     .show-info{
       position: fixed;
       right:0;
