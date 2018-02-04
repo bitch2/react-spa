@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import FA from 'react-fontawesome'
 import { connect } from 'react-redux'
-import { currentMusic, musicList, audioElement } from '../../../../store/action'
+import { currentMusic, musicList, audioElement, audioPlay } from '../../../../store/action'
 class musicHome extends Component{
     constructor(props){
       super(props)
@@ -9,6 +9,7 @@ class musicHome extends Component{
     }
     changeMusic(e,item){
       this.props.setCurrentMusic(item)
+      this.props.openAudioStatus()
     }
     render(){
         return(
@@ -45,7 +46,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        setCurrentMusic : item => dispatch(currentMusic(item))
+        setCurrentMusic : item => dispatch(currentMusic(item)),
+        openAudioStatus: () => dispatch(audioPlay())
     }
 }
 export default connect(

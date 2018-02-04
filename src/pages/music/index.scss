@@ -4,7 +4,7 @@
     top:0;
     bottom:0;
     width:100%;
-    background-color:rgba(0,0,0,.4);
+    background-color:rgba(0,0,0,.8);
     .music-mask{
         position: fixed;
         z-index:-1;
@@ -12,7 +12,8 @@
         bottom:0;
         width:100%;
         background-size:cover;
-        filter: blur(20px);
+        opacity:.6;
+        filter: blur(30px);
     }
     .music-title{
         margin-top:50px;
@@ -41,8 +42,8 @@
       right:400px;
       top:100px;
       bottom:60px;
+      padding-left:20px;
       overflow-y:auto;
-      border-top:1px solid #ddd;
       &::-webkit-scrollbar {
         width:10px;
         height:10px;
@@ -66,6 +67,7 @@
         font-size:0;
         line-height:40px;
         color:rgba(255,255,255,.8);
+        border-top:1px solid #ddd;
         border-bottom:1px solid rgba(255, 255, 255, .4);
         .song{
           display:inline-block;
@@ -138,11 +140,56 @@
       .search-info{
           margin-right:20px;
           width: 200px;
-          padding: 6px;
+          padding:2px 6px;
           font-size: 12px;
-          line-height: 20px;
-          color: #555;
-          vertical-align: middle;
+          line-height: 24px;
+          border-radius: 2px;
+      }
+      .list{
+        position: fixed;
+        left:0;
+        right:400px;
+        top:140px;
+        bottom:60px;
+        padding-left:20px;
+        overflow-y:auto;
+        color:#fff;
+        &::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+
+        &::-webkit-scrollbar-button {
+          display: none;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: rgba(255, 255, 255, .2);
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-track-piece {
+          display: none;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, .6);
+          border-radius: 4px;
+        }
+        .item{
+          transition:all .2s ease;
+          line-height:36px;
+          border-bottom:1px solid rgba(255,255,255,.4);
+          cursor:pointer;
+          &:hover{
+            padding-left:20px;
+            background-color:rgba(255,255,255,.2);
+          }
+          .index{
+            display:inline-block;
+            margin-right:10px;
+          }
+        }
       }
     }
     .show-info{
@@ -182,6 +229,14 @@
         line-height:60px;
         color:#fff;
         cursor:pointer;
+      }
+      .song-img{
+        width:40px;
+        border-radius: 50%;
+      }
+      .song-info{
+        font-size:14px;
+        color:#fff;
       }
     }
 }
