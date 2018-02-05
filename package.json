@@ -15,6 +15,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
     "font-awesome": "^4.7.0",
     "formidable": "^1.1.1",
     "react": "^16.2.0",
