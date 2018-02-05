@@ -1,10 +1,10 @@
-.home{
+.demo{
     min-width:1190px;
     background-color:#f6f6f6;
 }
 .out-container{
-// background-color:#fff;
   .out-routers{
+    background-color:rgba(0,0,0,.6);
     li{
       float:left;
       margin-left:20px;
@@ -13,16 +13,14 @@
         line-height:40px;
         text-align:center;
         font-size:14px;
-        font-weight:bold;
-        color:#000;
+        color:#fff;
         &:hover{
-          color:#0080f6;
+          color:#25d916;
         }
       }
       &.router-active{
         a{
-          color:#0080f6;
-          border-bottom:2px solid #0080f6;
+          color:#13fc00;
         }
       }
     }
