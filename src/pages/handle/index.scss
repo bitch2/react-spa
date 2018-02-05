@@ -44,4 +44,35 @@
             padding-top:10px;
         }
     }
+    .modal-preview{
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background-color:rgba(0,0,0,.6);
+        &.show{
+            display:block;
+        }
+        img{
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            max-width:80%;  
+        }
+        .fa{
+            transition:all .2s linear;
+            position: absolute;
+            right:6%;
+            top:100px;
+            color:#fff;
+            font-size:40px;
+            cursor:pointer;
+            &:hover{
+                transform: scale(1.2);
+            }
+        }
+    }
 }
