@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const formidable = require('formidable')
 const http=require('superagent')
+const cheerio=require('cheerio')
 const path=require('path')
 const fs = require('fs')
 const app = express()
@@ -12,7 +13,26 @@ app.get('/',(req,res)=>{
     res.send('server listen on localhost:8080')
 })
 app.get('/upload/getInfo',(req,res,next)=>{
-    res.send({'name':'admin','age':20})
+    http.get('https://cnodejs.org/')
+    .end((err,data)=>{
+        if(err){
+            return next(err)
+        }
+        let cnodeList=[]
+        let $=cheerio.load(data.text)
+        let cells=$('#topic_list .cell')
+        cells.each((index,item)=>{
+            let $item=$(item)
+            cnodeList.push({
+                title:$item.find('.topic_title').text(),
+                id:$item.find('.topic_title').attr('href'),
+                userImg: $item.find('.user_avatar img').attr('src'),
+                replyCount:$item.find('.count_of_replies').text(),
+                visitCount:$item.find('.count_of_visits').text(),               
+            })
+        })
+        res.send({data:cnodeList,state:true})
+    })
 })
 app.post('/upload/saveOnlineImg',(req,res,next)=>{
     // 图片地址类
